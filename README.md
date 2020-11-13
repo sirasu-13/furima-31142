@@ -5,7 +5,7 @@
 | Column         　| Type      | Options                |
 | ---------------　| ----------| -----------------------|
 | nickname       　| string    | null: false            |
-| e-mail         　| string    | null: false            |
+| email          　| string    | null: false            |
 |encrypted_password| string    | null: false            |
 | last_name      　| string    | null: false            |
 | first_name     　| string    | null: false            |
@@ -23,7 +23,7 @@
 
 | Column         　 | Type      | Options                        |
 | ---------------　 | ----------| -------------------------------|
-| item_title     　 | string    | null: false                    |
+| title          　 | string    | null: false                    |
 | price          　 | integer   | null: false                    |
 | description    　 | text      | null: false                    |
 | category_id    　 | integer    | null: false                    |
