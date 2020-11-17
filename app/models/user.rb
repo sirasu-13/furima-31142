@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i }
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
     validates :last_name
     validates :first_name
