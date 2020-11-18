@@ -13,9 +13,9 @@ class Item < ApplicationRecord
   validates :area_id, presence: true
   validates :guideline_id, presence: true
   validates :price, presence: true
-  validates :price, numericality: { 
+  validates :price, numericality: {
     greater_than_or_equal_to: 300,
-    less_than_or_equal_to: 99999999
+    less_than_or_equal_to: 99_999_999
   }
   validates :price, format: { with: /\A[0-9]+\z/ }
 end
