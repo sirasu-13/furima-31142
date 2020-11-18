@@ -4,18 +4,27 @@ class Item < ApplicationRecord
   has_one          :purchase
   has_one_attached :image
 
-  validates :title, presence: true
-  validates :image, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true
-  validates :status_id, presence: true
-  validates :shipping_fee_id, presence: true
-  validates :area_id, presence: true
-  validates :guideline_id, presence: true
-  validates :price, presence: true
+ with_options presence: true do
+  validates :title
+  validates :image
+  validates :description
+  validates :category_id
+  validates :status_id
+  validates :shipping_fee_id
+  validates :area_id
+  validates :guideline_id
+  validates :price
+ end
   validates :price, numericality: {
     greater_than_or_equal_to: 300,
     less_than_or_equal_to: 99_999_999
   }
   validates :price, format: { with: /\A[0-9]+\z/ }
+ with_options numericality: { greater_than_or_equal_to: 2, less_than_or_equal_to: 49} do
+  validates :category_id
+  validates :status_id
+  validates :shipping_fee_id
+  validates :area_id
+  validates :guideline_id
+ end
 end
