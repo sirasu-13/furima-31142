@@ -16,6 +16,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Title can't be blank")
     end
 
+    it 'imageが空では登録できないこと' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+
     it 'descriptionが空では登録できないこと' do
       @item.description = ''
       @item.valid?
@@ -29,9 +35,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'category_idのidが1のときは出品できないこと' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be greater than or equal to 2")
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
 
     it 'status_idが空では登録できないこと' do
@@ -41,9 +47,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'status_idのidが1のときは出品できないこと' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status must be greater than or equal to 2")
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
     end
 
     it 'shipping_fee_idが空では登録できないこと' do
@@ -53,9 +59,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'shipping_fee_idのidが1のときは出品できないこと' do
-      @item.shipping_fee_id = '1'
+      @item.shipping_fee_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping fee must be greater than or equal to 2")
+      expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
     end
 
     it 'area_idが空では登録できないこと' do
@@ -65,9 +71,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'area_idのidが1のときは出品できないこと' do
-      @item.area_id = '1'
+      @item.area_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Area must be greater than or equal to 2")
+      expect(@item.errors.full_messages).to include("Area must be other than 1")
     end
 
     it 'guideline_idが空では登録できないこと' do
@@ -77,9 +83,9 @@ RSpec.describe Item, type: :model do
     end
 
     it 'guideline_idのidが1のときは出品できないこと' do
-      @item.guideline_id = '1'
+      @item.guideline_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Guideline must be greater than or equal to 2")
+      expect(@item.errors.full_messages).to include("Guideline must be other than 1")
     end
 
     it 'priceが空では登録できないこと' do
