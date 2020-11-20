@@ -34,7 +34,7 @@
     <% if user_signed_in? && current_user.id != @item.user_id %>
     <%# current_userのidが一致してない場合は %>
     <%# 出品者！＝今のユーザー→今のユーザはこの商品を出品していない %>
-    <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    <%= link_to '購入画面に進む', item_purchases_path(@item.id) ,class:"item-red-btn"%>
     <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
