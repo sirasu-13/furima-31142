@@ -34,6 +34,13 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("Area can't be blank")
       end
+
+      it 'area_idが1の場合は購入できない' do
+        @item_purchase.area_id = 1
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Area must be other than 1")
+      end
+
       it 'municipalityが空だと購入できない' do
         @item_purchase.municipality = ""
         @item_purchase.valid?
@@ -44,6 +51,13 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("House number can't be blank")
       end
+
+      it 'building_nameが空でも購入できる' do
+        @item_purchase.building_name = nil
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Building name can't be blank")
+      end
+
       it 'phone_numberが空だと購入できない' do
         @item_purchase.phone_number = ""
         @item_purchase.valid?

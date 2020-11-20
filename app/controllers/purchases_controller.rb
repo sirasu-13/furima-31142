@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if user_signed_in? && current_user.id != @item.user_id && @item.purchase == nil
+    if current_user.id != @item.user_id && @item.purchase == nil
       @item_purchase = ItemPurchase.new
     else
       redirect_to root_path
@@ -11,9 +11,11 @@ class PurchasesController < ApplicationController
   end
 
   def create
+    binding.pry
     @item_purchase = ItemPurchase.new(purchase_params)
+    if @item_purchase.valid?
       pay_item
-    if @item_purchase.save
+      @item_purchase.save
       return redirect_to root_path
     else
       render action: :index
@@ -31,8 +33,8 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    # Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp.api_key = "sk_test_239d7e2ed9f66dbcacad8745"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    # Payjp.api_key = "sk_test_239d7e2ed9f66dbcacad8745"
       Payjp::Charge.create(
         amount: @item.price,  
         card: purchase_params[:token],    

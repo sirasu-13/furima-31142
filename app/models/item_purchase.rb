@@ -8,7 +8,6 @@ class ItemPurchase
     validates :area_id
     validates :municipality
     validates :house_number
-    validates :building_name
     validates :phone_number
   end
 
@@ -20,7 +19,7 @@ class ItemPurchase
   validates :phone_number, format: { with: /\A\d{11}\z/ }
 
   def save
-    Address.create(post_number: post_number, area_id: area_id, municipality: municipality, house_number: house_number, building_name: building_name, phone_number: phone_number)
-    Purchase.create(user_id: user_id, item_id: item_id)
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+    Address.create(post_number: post_number, area_id: area_id, municipality: municipality, house_number: house_number, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
