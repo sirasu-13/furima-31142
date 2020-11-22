@@ -80,6 +80,12 @@ RSpec.describe ItemPurchase, type: :model do
         expect(@item_purchase.errors.full_messages).to include("Phone number is invalid")
       end
 
+      it 'phone_numberは数字のみでなければ購入できない' do
+        @item_purchase.phone_number = "080-1234-5678"
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Phone number is invalid")
+      end
+
       it 'user_idが空だと購入できない' do
         @item_purchase.user_id = ""
         @item_purchase.valid?
