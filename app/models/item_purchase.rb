@@ -9,6 +9,8 @@ class ItemPurchase
     validates :municipality
     validates :house_number
     validates :phone_number
+    validates :user_id
+    validates :item_id
   end
 
   with_options format: { with: /\A\d{3}[-]\d{4}\z/ } do
